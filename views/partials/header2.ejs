@@ -1,0 +1,107 @@
+<% include ./header.ejs %>
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <div id="main">
+        <div class="left">
+            <div>
+                <h2 class="logo">Instagram</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/home"><span class="material-symbols-outlined">
+                                home
+                            </span>home</a></li>
+                    <li><a href="/search"><span class="material-symbols-outlined">
+                                search
+                            </span>search</a></li>
+                    <li><a href="/search"><span class="material-symbols-outlined">
+                                explore
+                            </span>explore</a></li>
+                    <li><a href="#" ><span class="material-symbols-outlined">
+                                hangout_video
+                            </span>reels</a></li>
+                    <li><a href="#"><span class="material-symbols-outlined">
+                                send
+                            </span>message</a></li>
+                    <li><a href="#"><span class="material-symbols-outlined">
+                                favorite
+                            </span>notifications</a></li>
+                    <li id="create" onclick="createPost()"><a href="#"><span class="material-symbols-outlined">
+                                add_box
+                            </span>create</a></li>
+                    <li><a href="/profile"><div class="image"><img src="/uploads/<%=pic%>" alt=""></div>profile</a></li>
+                </ul>
+                <div class="more">
+                    <div class="activities hide">
+                        <ul>
+                            <li><a href="#"><span class="material-symbols-outlined">
+                                        settings
+                                    </span>Settings</a></li>
+                            <li><a href=""><span class="material-symbols-outlined">
+                                        monitor_heart
+                                    </span>YOur Activity</a></li>
+                            <li><a href=""><span class="material-symbols-outlined">
+                                        bookmark
+                                    </span>Saved</a></li>
+                            <li><a href=""><span class="material-symbols-outlined">
+                                        clear_night
+                                    </span>Switch Appreances</a></li>
+                            <li><a href=""><span class="material-symbols-outlined">
+                                        error
+                                    </span>Report a problem</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Switch Account</a></li>
+                            <li><a href="/logout">Log out</a></li>
+                        </ul>
+                    </div>
+                    <h3 onclick="hide1()"><span class="material-symbols-outlined">
+                            menu
+                        </span> More</h3>
+                </div>
+            </nav>
+            <script>
+                function hide1() {
+                    document.querySelector('.activities').classList.toggle('hide');
+                }
+            </script>
+        </div>
+        <div class="create-post hide">
+            <form action="/create-post" method="post" enctype="multipart/form-data">
+                <span class="material-symbols-outlined" onclick="createPost()">
+                    close
+                </span>
+                <h2>Upload Post</h2>
+                <div class="grp">
+                    <div class="select-image" onclick="inputImage2()">
+                        <span class="material-symbols-outlined" >
+                            add_a_photo
+                        </span>
+                        <img src="" alt="" hidden id="imagePreview2">
+                        <input type="file" name="image2" id="image2" hidden>
+                    </div>
+                    <div class="others">
+                        <label for="">Caption</label>
+                        <textarea name="caption" id="" cols="30" rows="10" placeholder="Add captions"></textarea>
+                        <input type="submit" value="Post">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+            function createPost() {
+                document.querySelector('.create-post').classList.toggle('hide');
+            }
+            function inputImage2() {
+                document.querySelector('#image2').click()
+            }
+            document.querySelector('#image2').addEventListener('change', function () {
+            const choosedFile = this.files[0];
+            const img=document.querySelector('#imagePreview2');
+            if (choosedFile) {
+                const reader = new FileReader();
+                img.removeAttribute('hidden')
+                reader.addEventListener('load', function () { img.setAttribute('src', reader.result); });
+                reader.readAsDataURL(choosedFile);
+            }
+        });
+        </script>

@@ -1,0 +1,31 @@
+<% include ./partials/header.ejs %>
+  <link rel="stylesheet" href="/stylesheets/login.css">
+  <div id="main">
+    <div class="container">
+      <div class="top">
+        <h1 class="logo">Instagram</h1>
+        <form action="/login" method="post">
+          <div class="grp">
+            <label for="username">Phone Number,Usename or Email</label>
+            <input type="text" name="username">
+          </div>
+          <div class="grp">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+          </div>
+          <div class="grp">
+            <input type="submit" value="Log in">
+          </div>
+        </form>
+        <div class="forget">
+          <p>OR</p>
+          <a href="#">Forget Password?</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <a href="/register">Don't have any account?<span>Sign up</span></a>
+
+      </div>
+    </div>
+  </div>
+  <% include ./partials/footer.ejs %>

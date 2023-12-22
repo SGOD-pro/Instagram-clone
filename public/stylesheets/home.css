@@ -1,0 +1,201 @@
+.right {
+	width: calc(100% - 220px);
+	height: 100vh;
+	margin-left: 220px;
+	display: flex;
+	justify-content: center;
+	overflow-y: auto;
+	--sb-track-color: #262626;
+	--sb-thumb-color: #9b9b9bc5;
+	--sb-size: 4px;
+	scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.right::-webkit-scrollbar {
+	width: var(--sb-size);
+}
+
+.right::-webkit-scrollbar-track {
+	background: var(--sb-track-color);
+	border-radius: 10px;
+}
+
+.right::-webkit-scrollbar-thumb {
+	background: var(--sb-thumb-color);
+	border-radius: 10px;
+}
+.content {
+	width: 70%;
+	height: 100%;
+}
+.stories {
+	padding: 10px;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.scrollable {
+	display: flex;
+	gap: 10px;
+}
+.scrollable .story {
+	width: 70px;
+	height: 70px;
+	padding: 3px;
+	border-radius: 50%;
+	overflow: hidden;
+	background-color: #f9d801;
+	background-image: linear-gradient(
+		45deg,
+		#f9d801 0%,
+		#f70406 45%,
+		#7e3baf 75%
+	);
+}
+.stories span {
+	position: absolute;
+	background-color: #f4f4f463;
+	z-index: 99;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.stories span:nth-child(1) {
+	transform: rotate(180deg);
+}
+.stories span:nth-child(2) {
+	right: 0;
+}
+.scrollable .story img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 50%;
+	border: 2px solid #000;
+}
+.scrollable .item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+}
+.scrollable .item p {
+	width: 80px;
+	padding: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #f4f4f4;
+	font-size: clamp(0.6rem, 0.9vw, 0.9rem);
+}
+.feeds {
+	width: 60%;
+	min-height: 100vh;
+	margin: auto;
+}
+.feeds .card {
+	width: 100%;
+	color: #f4f4f4;
+	margin-top: 25px;
+	cursor: pointer;
+}
+.feeds .card header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+}
+.feeds .card header .grp {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.feeds .card header .grp h2 {
+	font-weight: 300;
+	font-size: 1rem;
+}
+.feeds .card header .grp h2 a {
+	text-decoration: none;
+	font-weight: 500;
+	color: #f4f4f4;
+}
+.feeds .card header .grp .dp {
+	overflow: hidden;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.feeds .card header .grp img {
+	width: 100%;
+	object-fit: contain;
+}
+.feeds .card .image {
+	width: 100%;
+	height: 65vh;
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #f4f4f4ad;
+}
+.feeds .card .image img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+.feeds .card .image i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	font-size: 10rem;
+	background-image: linear-gradient(
+		135deg,
+		#f9d801 0%,
+		#f70406 50%,
+		#7e3baf 75%
+	);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+.feeds .card .like,
+.feeds .card .like .grp {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.feeds .card .like span {
+	display: block;
+	margin: 10px 8px;
+	cursor: pointer;
+	font-size: clamp(1.2rem, 4vw, 1.7rem);
+}
+.feeds .card .comment h3 {
+	font-weight: 400;
+	font-size: clamp(0.9rem, 1vw, 1rem);
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+.feeds .card .comment h3 span,
+.feeds .card .comment .decription {
+	font-weight: 300;
+	font-size: clamp(0.6rem, 0.8vw, 0.8rem);
+}
+.feeds .card .comment .decription {
+	opacity: 0.8;
+}
+.feeds .card .comment .decription p {
+	width: 70%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.grp span a {
+	color: #f4f4f4;
+}
+.bxs-heart {
+	color: #f70406;
+}

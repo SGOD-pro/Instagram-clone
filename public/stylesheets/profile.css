@@ -1,0 +1,534 @@
+.right {
+	width: calc(100% - 220px);
+	height: 100vh;
+	margin-left: 220px;
+	display: flex;
+	justify-content: center;
+	overflow-y: auto;
+	--sb-track-color: #262626;
+	--sb-thumb-color: #9b9b9bc5;
+	--sb-size: 4px;
+	scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.right::-webkit-scrollbar {
+	width: var(--sb-size);
+}
+
+.right::-webkit-scrollbar-track {
+	background: var(--sb-track-color);
+	border-radius: 10px;
+}
+
+.right::-webkit-scrollbar-thumb {
+	background: var(--sb-thumb-color);
+	border-radius: 10px;
+}
+.content {
+	width: 70%;
+	height: 100%;
+}
+.content header {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 40px 20px;
+	gap: 40px;
+	color: #f4f4f4;
+	border-bottom: 1px solid #424242e2;
+	padding-bottom: 40px;
+}
+.content header .image {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.content header .image img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+.content header .others {
+	width: 70%;
+}
+.content header .others .username {
+	font-weight: 400;
+	font-size: clamp(1.4rem, 2rem, 1.8rem);
+}
+.content header .others .username button {
+	padding: 4px 8px;
+	cursor: pointer;
+	border-radius: 8px;
+	background-color: #262626;
+	border: none;
+	color: #f4f4f4;
+	outline: none;
+	transition: 0.2s;
+}
+.content header .others .username button:active {
+	transform: scale(0.9);
+}
+.content header .others .counting {
+	display: flex;
+	gap: 25px;
+	font-size: clamp(0.7rem, 1.2vw, 1rem);
+	margin: 10px 0;
+}
+.fullname {
+	font-weight: 300;
+	font-size: clamp(1.1rem, 1.2rem, 1.4rem);
+	margin: 10px 0;
+	text-transform: capitalize;
+}
+.content header .others .bio p {
+	opacity: 0.7;
+	font-size: clamp(0.6rem, 0.8vw, 1rem);
+}
+.posts {
+	text-align: center;
+	color: #f4f4f4;
+}
+.posts h2 {
+	font-weight: 300;
+	font-size: clamp(0.8rem, 1vw, 1rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.7;
+}
+.posts h2 span {
+	padding: 8px;
+}
+.posts .cards {
+	margin: auto;
+	margin-top: 10px;
+	width: 94%;
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+.posts .cards .card {
+	width: 280px;
+	height: 280px;
+	background-color: #868686;
+}
+.posts .cards .card img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.edit-profile {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #26262637;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #f4f4f4;
+}
+.edit-profile form {
+	background-color: #262626;
+	border-radius: 12px;
+	padding: 15px;
+	width: 30%;
+	position: relative;
+}
+.edit-profile form span {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 8px;
+	cursor: pointer;
+}
+.edit-profile form h2 {
+	font-weight: 500;
+	font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+.edit-profile form .grp {
+	display: flex;
+	margin-top: 15px;
+	gap: 10px;
+	justify-content: space-around;
+}
+.edit-profile form .grp .texts {
+	padding: 10px;
+	width: 50%;
+}
+.edit-profile form .grp .texts h3 {
+	font-weight: 400;
+}
+.edit-profile form .grp .texts p {
+	color: #4cb5f9;
+	font-weight: 500;
+	transition: 0.2s;
+	cursor: pointer;
+}
+.edit-profile form .grp .texts p:hover {
+	color: #f4f4f4;
+}
+.edit-profile form .grp:nth-child(1) {
+	border-bottom: 1px solid #bcbcbc;
+}
+.edit-profile form .grp .image {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.edit-profile form .grp .image img {
+	width: 100%;
+	object-fit: contain;
+}
+.edit-profile form .grp textarea {
+	width: 60%;
+	height: 100px;
+	resize: none;
+	border: 1px solid #262626;
+	outline: none;
+	border-radius: 6px;
+	background-color: #868686;
+	padding: 8px;
+}
+.edit-profile form input[type="submit"] {
+	background-color: #4cb5f9;
+	font-weight: 500;
+	font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+	padding: 4px 8px;
+	outline: none;
+	border: none;
+	border-radius: 7px;
+	margin: 10px;
+	cursor: pointer;
+	color: #f4f4f4;
+}
+.show-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70%;
+	border-radius: 10px;
+	background-color: #2626263f;
+	backdrop-filter: blur(10px);
+	max-height: 95vh;
+	height: 72vh;
+	border: 1px solid #c0c0c0;
+	display: flex;
+	overflow: hidden;
+}
+.show-image .image {
+	width: 48%;
+}
+.show-image .image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.show-image .show-image-right {
+	width: 52%;
+	display: grid;
+	grid-template-rows: 0.8fr 4.2fr 1.3fr;
+	border-left: 1px solid #f4f4f4;
+}
+.show-image .show-image-right header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 10px;
+	color: #f4f4f4;
+}
+.show-image .show-image-right a {
+	text-decoration: none;
+}
+.show-image .show-image-right header .leftpart {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.show-image .show-image-right header .leftpart a {
+	font-weight: 500;
+	color: #f4f4f4;
+	font-size: clamp(14px, 0.9vw, 16px);
+}
+.show-image .show-image-right header .leftpart .image {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	border: 1px solid #9c9c9c;
+}
+.show-image .show-image-right header .leftpart .image img {
+	width: 100%;
+	object-fit: cover;
+}
+.show-image .show-image-right header .action {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.show-image .show-image-right header .action a {
+	position: absolute;
+	left: -200%;
+	display: flex;
+	gap: 5px;
+}
+.show-image .show-image-right header .action > span {
+	padding: 6px;
+	background-color: #f4f4f414;
+	border-radius: 50%;
+	border: 1px solid #f4f4f4;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.show-image .show-image-right header .action > span:hover {
+	background-color: #f4f4f432;
+}
+.show-image .show-image-right header .action #deletePost {
+	background-color: #f70406;
+	padding: 5px;
+	border-radius: 7px 10px;
+	color: #f4f4f4;
+	overflow: hidden;
+}
+.show-image .show-image-right header .action #deletePost.hide {
+	display: none;
+}
+.show-image .show-image-right header .action #deletePost span {
+	position: absolute;
+	width: 100%;
+	display: block;
+	text-align: center;
+	background-color: #f70406;
+	right: -100%;
+}
+.show-image .show-image-right .comments {
+	color: #f4f4f4;
+	border: 1px solid #f4f4f4;
+	border-left: 0px;
+	padding: 10px;
+	border-right: 0px;
+}
+.show-image .show-image-right footer p {
+	font-size: 18px;
+	margin-left: 10px;
+	line-height: 18px;
+	color: #f4f4f4;
+}
+.show-image .show-image-right footer form {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 2px 10px;
+}
+.show-image .show-image-right footer .icons {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	color: #f4f4f4;
+}
+.show-image .show-image-right footer .icons i {
+	font-size: clamp(25px, 2vw, 30px);
+	margin-left: 2px;
+	cursor: pointer;
+	color: #f4f4f4;
+}
+.show-image .show-image-right footer .icons i span {
+	font-size: clamp(25px, 2.4vw, 30px);
+}
+.show-image .show-image-right footer form input {
+	width: 70%;
+	font-size: 16px;
+	padding: 0.4em;
+	border-radius: 16px;
+	outline: none;
+	border: 1px solid #a9a9a9c8;
+}
+#comment-btn {
+	font-family: inherit;
+	font-size: 12px;
+	background-color: #f9d801;
+	background-image: linear-gradient(
+		45deg,
+		#f9d801 0%,
+		#f70406 45%,
+		#7e3baf 75%
+	);
+	color: white;
+	padding: 0.7em 1em;
+	padding-left: 0.9em;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 16px;
+	overflow: hidden;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+#likedornot.bxs-heart {
+	background-image: linear-gradient(
+		135deg,
+		#f9d801 0%,
+		#f70406 50%,
+		#7e3baf 70%
+	); /* Adjust gradient colors */
+	-webkit-background-clip: text; /* For older versions of Chrome and Safari */
+	background-clip: text;
+	color: transparent;
+}
+#comment-btn span {
+	display: block;
+	margin-left: 0.3em;
+	transition: all 0.3s ease-in-out;
+}
+
+#comment-btn svg {
+	display: block;
+	transform-origin: center center;
+	transition: transform 0.3s ease-in-out;
+}
+
+#comment-btn:hover .svg-wrapper {
+	animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+#comment-btn:hover svg {
+	transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+#comment-btn:hover span {
+	transform: translateX(5em);
+}
+
+#comment-btn:active {
+	transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+	from {
+		transform: translateY(0.1em);
+	}
+
+	to {
+		transform: translateY(-0.1em);
+	}
+}
+#follow-btn {
+	border-radius: 8px;
+	padding: 3px 8px;
+	background-color: #2aaaff;
+	transition: 0.2s ease-in-out;
+	color: #f4f4f4;
+	font-weight: 500;
+	font-size: clamp(14px, 0.9vw, 16px);
+	outline: none;
+	text-transform: capitalize;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+#follow-btn span {
+	font-size: clamp(16px, 1vw, 19px);
+}
+#follow-btn.checked {
+	background-color: #262626;
+}
+#follow-btn:active {
+	background-color: #0c9eff;
+	transform: scale(0.9);
+}
+.hide {
+	display: none;
+}
+.followers {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #26262648;
+	border-radius: 10px;
+	backdrop-filter: blur(8px);
+	border: 1px solid #f4f4f497;
+	width: 444px;
+	height: 60vh;
+	padding: 10px;
+	--sb-track-color: #262626;
+	--sb-thumb-color: #9b9b9bc5;
+	--sb-size: 4px;
+	scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.followers::-webkit-scrollbar {
+	width: var(--sb-size);
+}
+
+.followers::-webkit-scrollbar-track {
+	background: var(--sb-track-color);
+	border-radius: 10px;
+}
+
+.followers::-webkit-scrollbar-thumb {
+	background: var(--sb-thumb-color);
+	border-radius: 10px;
+}
+.followers header {
+	color: #f4f4f4;
+	display: flex;
+	align-items: center;
+	font-size: clamp(20px, 2vw, 25px);
+	justify-content: space-between;
+}
+.followers header h2{
+	font-size: 2rem;
+	font-weight: 300;
+}
+.followers header span {
+	cursor: pointer;
+	padding: 8px;
+}
+.followers .content {
+	margin-top: 10px;
+	width: 100%;
+}
+.followers .content .user {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	border-radius: 10px;
+	padding: 8px;
+	color: #f4f4f4;
+	background-color: hsl(0, 0%, 8%);
+	text-decoration: none;
+	transition: .1s ease-in;
+	margin-top: 8px;
+}
+.followers .content .user:hover{
+	background-color: #242424;
+
+}
+.counting p{
+	cursor: pointer;
+}
+.followers .content .user h2 {
+	font-weight: 400;
+	font-size: clamp(15px, 1vw, 17px);
+}
+.followers .content .user h4 {
+	font-weight: 400;
+	font-size: clamp(12px, 0.8vw, 14px);
+	opacity: 0.7;
+}
+.followers .follower-img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.followers .follower-img img {
+	width: 100%;
+	object-fit: contain;
+}

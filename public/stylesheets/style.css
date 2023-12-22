@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster+Two:ital@0;1&family=Poppins:wght@100;300;400;500;600;700&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+	min-height: 100%;
+	width: 100%;
+}
+
+.logo {
+	font-size: 24px;
+	font-weight: bold;
+	color: #262626e7;
+	font-family: "Lobster Two", sans-serif;
+	font-weight: 600;
+	padding: 20px;
+	font-size: clamp(2rem, 6vw, 2.6rem);
+}
+*::selection{
+	cursor: default;
+}

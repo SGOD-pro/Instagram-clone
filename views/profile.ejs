@@ -1,0 +1,331 @@
+<% include ./partials/header2.ejs %>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <div class="right">
+        <div class="content">
+            <header>
+                <div class="image">
+                    <img src="/uploads/<%=user.profilePicture%>" alt="">
+                </div>
+                <div class="others">
+                    <h1 class="username">
+                        <%=user.username%>
+                            <% if (edit) {%>
+                                <span><button id="editProfile">Edit Profile</button></span>
+                                <% } else{%>
+                                    <% if(mainUser.following.indexOf(user._id)!=-1){%>
+                                        <button id="follow-btn" class="checked"><span class="material-symbols-outlined">
+                                                check
+                                            </span> followed</button>
+
+                                        <%}else{%>
+                                            <button id="follow-btn">Follow</button>
+                                            <% } %>
+                                                <% } %>
+                    </h1>
+
+                    <div class="counting">
+                        <p>
+                            <%=user.posts.length%> Post
+                        </p>
+                        <p onclick="viewFollowers('Followers')"><span id="follower">
+                                <%=user.followers.length%>
+                            </span> followers</p>
+                        <p onclick="viewFollowing('Following')"><span id="following">
+                                <%=user.following.length%>
+                            </span> following</p>
+                    </div>
+
+                    <h2 class="fullname">
+                        <%=user.fullname%>
+                    </h2>
+                    <div class="bio">
+                        <p>
+                            <%=user.bio%>
+                        </p>
+                    </div>
+                </div>
+            </header>
+            <div class="posts">
+                <div>
+                    <h2><span class="material-symbols-outlined">
+                            post
+                        </span>Posts</h2>
+                </div>
+                <div class="cards">
+                    <% user.posts.forEach(element=> { %>
+                        <div class="card" onclick="showCard('<%=element._id %>')"><img src="/uploads/<%=element.post %>"
+                                alt=""></div>
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="edit-profile hide">
+        <form action="/edit-profile" method="post" enctype="multipart/form-data">
+            <span class="material-symbols-outlined" onclick="hide()">
+                close
+            </span>
+            <h2>Edit Profile</h2>
+            <div class="grp">
+                <div class="image">
+                    <img id="imagePreview" src="/uploads/<%=user.profilePicture%>" alt="">
+                </div>
+                <input type="file" name="image" id="image" hidden>
+                <div class="texts">
+                    <h3>
+                        <%=user.fullname%>
+                    </h3>
+                    <p onclick="inputImage()">Edit Profile Picture</p>
+                </div>
+            </div>
+            <div class="grp">
+                <p>Bio:</p>
+                <textarea id="" cols="30" rows="10" name="bio" aria-valuetext="<%=user.profilePicture%>"></textarea>
+            </div>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+    <div class="show-image hide">
+        <div class="image">
+            <img src="" alt="" id="show-img">
+        </div>
+        <div class="show-image-right">
+            <header>
+                <div class="leftpart">
+                    <div class="image">
+                        <img src="/uploads/0db2bdd3-9b51-4441-bba9-6434e7afc24c.jpg" alt="">
+                    </div>
+                    <a href="#" id="show-username">
+                        <%=user.username%>
+                    </a>
+                </div>
+                <% if(edit) {%>
+                    <div class="action">
+                        <a href="" id="deletePost" class="hide">
+                            <p>Delete</p>
+                            <span class="material-symbols-outlined">
+                                delete_forever
+                            </span>
+                        </a>
+                        <span class="material-symbols-outlined">
+                            more_vert
+                        </span>
+                    </div>
+                    <% }%>
+            </header>
+            <div class="comments">
+                COMMENTS
+            </div>
+            <footer>
+                <div class="icons">
+                    <i class='bx bx-heart' id="likedornot"></i>
+                    <i><span class="material-symbols-outlined">
+                            send
+                        </span></i>
+                    <span id="imageCaption">Captions</span>
+                </div>
+                <p><span id="postLikes">126</span> LIKES</p>
+                <form action="">
+                    <input type="text" placeholder="Add Comments..">
+                    <button type="submit" id="comment-btn">
+                        <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path fill="currentColor"
+                                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <span>Send</span>
+                    </button>
+                </form>
+            </footer>
+        </div>
+    </div>
+
+    <div class="followers hide">
+        <header>
+            <h2 id="section">Followers</h2>
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </header>
+        <div class="content">
+            <a href="#" class="user">
+                <div class="follower-img">
+                    <img src="/uploads/22450d1b-6123-4ff6-b0a1-0a39120c4010.png" alt="">
+                </div>
+                <div class="texts">
+                    <h2>username</h2>
+                    <h4>fullname</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("#editProfile").addEventListener('click', () => {
+            hide()
+        })
+        function hide() {
+            document.querySelector(".edit-profile").classList.toggle('hide');
+        }
+        function inputImage() {
+            document.querySelector("#image").click();
+        }
+
+        document.querySelector('#image').addEventListener('change', function () {
+            const choosedFile = this.files[0];
+            const img = document.querySelector('#imagePreview');
+            if (choosedFile) {
+                const reader = new FileReader();
+                reader.addEventListener('load', function () { img.setAttribute('src', reader.result); });
+                reader.readAsDataURL(choosedFile);
+            }
+        });
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
+        integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+        integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const show = document.querySelector('.show-image')
+        function showCard(id) {
+            document.querySelector('#likedornot').setAttribute('onclick', `likePost('${id}')`)
+
+            axios.get(`/post-details/${id}`)
+                .then((result) => {
+                    let userId = '<%=mainUser._id %>'
+                    document.querySelector('#show-img').setAttribute('src', `/uploads/${result.data.post}`)
+                    document.querySelector('#postLikes').innerHTML = result.data.likes.length
+
+                    document.querySelector('#imageCaption').innerHTML = result.data.caption
+                    if (result.data.likes.indexOf(userId) != -1) {
+                        document.querySelector('#likedornot').classList.add('bxs-heart')
+                    }
+                    else {
+                        document.querySelector('#likedornot').classList.remove('bxs-heart')
+                    }
+                    document.querySelector('.show-image').classList.remove('hide')
+                }).catch((err) => {
+
+                });
+            document.querySelector('#deletePost').href = `/delete-post/${id}`
+        }
+        document.addEventListener('click', (e) => {
+            document.querySelectorAll('.posts .cards .card').forEach(element => {
+                if (!show.contains(e.target) && e.target != element) {
+                    show.classList.add('hide')
+                }
+            })
+        })
+        const deleteMenu = document.querySelector('.show-image .show-image-right header .action > span')
+        const deleteBTN = document.querySelector('.show-image .show-image-right header .action a')
+
+        function unHide() {
+            deleteBTN.classList.toggle('hide')
+        }
+        function likePost(postId) {
+            axios.get(`/like-dislike/${postId}`)
+                .then((result) => {
+                    document.querySelector('#postLikes').innerHTML = result.data
+                    document.querySelector('#likedornot').classList.toggle('bxs-heart')
+
+                }).catch((err) => {
+
+                });
+        }
+        deleteBTN.addEventListener('mouseover', (e) => {
+            gsap.to('.show-image .show-image-right header .action #deletePost span', {
+                right: '0%',
+                duration: .3
+            })
+        })
+        deleteBTN.addEventListener('mouseleave', (e) => {
+            gsap.to('.show-image .show-image-right header .action #deletePost span', {
+                right: '-100%',
+                duration: .3
+            })
+        })
+        deleteMenu.addEventListener('click', unHide)
+    </script>
+    <script>
+        console.log('hii');
+        document.querySelector('#follow-btn').addEventListener('click', (e) => {
+            const id = '<%=user._id%>'
+            console.log('<%=user.username%>');
+            axios.get(`/followers/${id}`)
+                .then((result) => {
+                    if (!e.target.classList.contains('checked')) {
+                        e.target.innerHTML = `<span class="material-symbols-outlined">
+                            check
+                            </span> followed`
+                        e.target.classList.add('checked')
+                    }
+                    else {
+                        e.target.innerHTML = `follow`
+                        e.target.classList.remove('checked')
+                    }
+                    document.querySelector('#follower').innerHTML = result.data
+                }).catch(() => {
+
+                })
+        })
+    </script>
+    <script>
+        document.querySelector('.followers header span').addEventListener('click', () => {
+            document.querySelector('.followers').classList.add('hide')
+        })
+        function viewFollowers(params) {
+            document.querySelector('#section').innerHTML = params
+            document.querySelector('.followers').classList.remove('hide')
+            let inner = ''
+            axios.get('/getFollowers')
+                .then((result) => {
+                    result.data.forEach(elem=>{
+                    inner += `<a href="/searched-id/${elem._id}" class="user">
+                <div class="follower-img">
+                    <img src="/uploads/${elem.profilePicture}" alt="">
+                </div>
+                <div class="texts">
+                    <h2>${elem.username}</h2>
+                    <h4>${elem.fullname}</h4>
+                </div>
+            </a>`})
+                    document.querySelector('.followers .content').innerHTML = inner;
+                }).catch(() => {
+
+                })
+        }
+        function viewFollowing(params) {
+            document.querySelector('#section').innerHTML = params
+            document.querySelector('.followers').classList.remove('hide')
+            let inner = ''
+            axios.get('/getFollowing')
+                .then((result) => {
+                    result.data.forEach(elem=>{
+                    inner += `<a href="/searched-id/${elem._id}" class="user">
+                <div class="follower-img">
+                    <img src="/uploads/${elem.profilePicture}" alt="">
+                </div>
+                <div class="texts">
+                    <h2>${elem.username}</h2>
+                    <h4>${elem.fullname}</h4>
+                </div>
+            </a>`})
+                    document.querySelector('.followers .content').innerHTML = inner;
+                }).catch(() => {
+
+                })
+        }
+    </script>
+    <% include ./partials/footer2.ejs %>

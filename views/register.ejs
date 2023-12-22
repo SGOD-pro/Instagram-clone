@@ -1,0 +1,46 @@
+<% include ./partials/header.ejs %>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <div id="main">
+        <div class="container">
+            <div class="top">
+                <h1 class="logo">Instagram</h1>
+                <p class="extra">
+                    Sign up to see photos and videos from your friends.
+                </p>
+                <form action="/register" method="post">
+                    <div class="grp">
+                        <label for="username">Username</label>
+                        <input type="text" name="username">
+                    </div>
+                    <div class="grp">
+                        <label for="fullname">Full name</label>
+                        <input type="text" name="fullname">
+                    </div>
+                    <div class="grp">
+                        <label for="email">Email</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="grp">
+                        <label for="password">Password</label>
+                        <input type="password"  name="password">
+                    </div>
+                    <div class="text">
+                        <p>People who use our service may have uploaded your contact information to Instagram. <a
+                                href="#">Learn More</a></p>
+                    </div>
+                    <div class="text">
+                        <p>By signing up, you agree to our <a href="#">Terms</a> , <a href="#">Privacy Policy</a> and <a
+                                href="#">Cookies Policy</a> .</p>
+                    </div>
+                    <div class="grp">
+                        <input type="submit" value="Sign up">
+                    </div>
+                </form>
+
+            </div>
+            <div class="bottom">
+                <a href="/">Have an account?<span>Log in</span></a>
+            </div>
+        </div>
+    </div>
+    <% include ./partials/footer.ejs %>
